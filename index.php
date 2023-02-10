@@ -3,21 +3,27 @@
 require_once "database.php";
 
 if ($_SERVER["REQUEST_METHOD"] === "POST") {
-    $bodemformaat = $_POST["bodemformaat"] ?? "";
-    $saus = $_POST["saus"] ?? "";
-    $pizzatopping = $_POST["pizzatopping"] ?? "";
-    $kruiden = implode(", ", $_POST["kruiden"] ?? []);
+    $achtbaan = $_POST["achtbaan"] ?? "";
+    $pretpark = $_POST["pretpark"] ?? "";
+    $land = $_POST["land"] ?? "";
+    $topsnelheid = $_POST["topsnelheid"] ?? "";
+    $hoogte = $_POST["hoogte"] ?? "";
+    $opening = $_POST["opening"] ?? "";
+    $cijfer = $_POST["cijfer"] ?? "";
 
-    $stmt = $pdo->prepare("INSERT INTO pizza (bodemformaat, saus, pizzatopping, kruiden) VALUES (?, ?, ?, ?)");
-    $stmt->bindValue(1, $bodemformaat);
-    $stmt->bindValue(2, $saus);
-    $stmt->bindValue(3, $pizzatopping);
-    $stmt->bindValue(4, $kruiden);
+    $stmt = $pdo->prepare("INSERT INTO achtbaan VALUES (NULL, ?, ?, ?, ?, ?, ?, ?)");
+    $stmt->bindValue(1, $achtbaan);
+    $stmt->bindValue(2, $pretpark);
+    $stmt->bindValue(3, $land);
+    $stmt->bindValue(4, $topsnelheid);
+    $stmt->bindValue(5, $hoogte);
+    $stmt->bindValue(6, $opening);
+    $stmt->bindValue(7, $cijfer);
 
     $stmt->execute();
 
     header("Refresh: 2; url=/");
-    die("De pizza is aangemaakt.");
+    die("De achtbaan is aangemaakt.");
 }
 
 ?>
@@ -27,7 +33,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Maak je eigen pizza</title>
+    <title>Invoer Achtbaan</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
 </head>
 
