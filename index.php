@@ -40,6 +40,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
 <body>
     <div class="container">
         <h1 class="text-center">Invoer Achtbaan</h1>
+        <a href="read.php">Read</a>
 
         <form method="post">
             <div class="mb-3">

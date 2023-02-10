@@ -10,22 +10,27 @@ if (!$id) {
 }
 
 if ($_SERVER["REQUEST_METHOD"] === "POST") {
-    $bodemformaat = $_POST["bodemformaat"] ?? "";
-    $saus = $_POST["saus"] ?? "";
-    $pizzatopping = $_POST["pizzatopping"] ?? "";
-    $kruiden = implode(", ", $_POST["kruiden"] ?? []);
+    $achtbaan = $_POST["achtbaan"] ?? "";
+    $pretpark = $_POST["pretpark"] ?? "";
+    $land = $_POST["land"] ?? "";
+    $topsnelheid = $_POST["topsnelheid"] ?? "";
+    $hoogte = $_POST["hoogte"] ?? "";
+    $opening = $_POST["opening"] ?? "";
+    $cijfer = $_POST["cijfer"] ?? "";
 
-    $stmt = $pdo->prepare("UPDATE pizza SET bodemformaat = ?, saus = ?, pizzatopping = ?, kruiden = ? WHERE id = ?");
-    $stmt->bindValue(1, $bodemformaat);
-    $stmt->bindValue(2, $saus);
-    $stmt->bindValue(3, $pizzatopping);
-    $stmt->bindValue(4, $kruiden);
-    $stmt->bindValue(5, $id);
+    $stmt = $pdo->prepare("UPDATE achtbaan SET NaamAchtbaan = ?, NaamPretpark = ?, Land = ?, Topsnelheid = ?, Hoogte = ?, Datum = ?, Cijfer = ?");
+    $stmt->bindValue(1, $achtbaan);
+    $stmt->bindValue(2, $pretpark);
+    $stmt->bindValue(3, $land);
+    $stmt->bindValue(4, $topsnelheid);
+    $stmt->bindValue(5, $hoogte);
+    $stmt->bindValue(6, $opening);
+    $stmt->bindValue(7, $cijfer);
 
     $stmt->execute();
 
     header("Refresh: 2; url=/");
-    die("De pizza is aangepast.");
+    die("De achtbaan is aangepast.");
 }
 
 ?>
@@ -35,86 +40,53 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Maak je eigen pizza</title>
+    <title>Achtbaan</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
 </head>
 
 <body>
     <div class="container">
-        <h1 class="text-center">Maak je eigen pizza</h1>
+        <h1 class="text-center">Achtbaan</h1>
 
         <form method="post">
             <div class="mb-3">
-                <label for="bodemformaat" class="form-label">Bodemformaat</label>
-
-                <select name="bodemformaat" id="bodemformaat" class="form-control">
-                    <option>Maak je keuze</option>
-                    <option value="20 cm">20 cm</option>
-                    <option value="25 cm">25 cm</option>
-                    <option value="30 cm">30 cm</option>
-                    <option value="35 cm">35 cm</option>
-                    <option value="40 cm">40 cm</option>
-                </select>
+                <label for="achtbaan" class="form-label">Naam Achtbaan</label>
+                <input type="text" name="achtbaan" id="achtbaan" class="form-control">
             </div>
 
             <div class="mb-3">
-                <label for="saus" class="form-label">Saus</label>
-
-                <select name="saus" id="saus" class="form-control">
-                    <option>Maak je keuze</option>
-                    <option value="Tomatensaus">Tomatensaus</option>
-                    <option value="Extra tomatensaus">Extra tomatensaus</option>
-                    <option value="Spicy tomatensaus">Spicy tomatensaus</option>
-                    <option value="BBQ saus">BBQ saus</option>
-                    <option value="Creme fraiche">Creme fraiche</option>
-                </select>
+                <label for="pretpark" class="form-label">Naam Pretpark</label>
+                <input type="text" name="pretpark" id="pretpark" class="form-control">
             </div>
 
             <div class="mb-3">
-                <div class="form-label">Pizzatopping</div>
-
-                <div class="form-check">
-                    <input class="form-check-input" type="radio" name="pizzatopping" value="Vegan" id="vegan">
-                    <label class="form-check-label" for="vegan"> Vegan</label>
-                </div>
-
-                <div class="form-check">
-                    <input class="form-check-input" type="radio" name="pizzatopping" value="Vegetarisch" id="vegetarisch">
-                    <label class="form-check-label" for="vegetarisch"> Vegetarisch</label>
-                </div>
-
-                <div class="form-check">
-                    <input class="form-check-input" type="radio" name="pizzatopping" value="Vlees" id="vlees">
-                    <label class="form-check-label" for="vlees"> Vlees</label>
-                </div>
+                <label for="land" class="form-label">Naam Land</label>
+                <input type="text" name="land" id="land" class="form-control">
             </div>
 
             <div class="mb-3">
-                <div class="form-label">Kruiden</div>
+                <label for="topsnelheid" class="form-label">Topsnelheid (km/u)</label>
+                <input type="number" min="1" max="200" name="topsnelheid" id="topsnelheid" class="form-control">
+            </div>
 
-                <div class="form-check">
-                    <input class="form-check-input" type="checkbox" name="kruiden[]" value="Peterselie" id="peterselie">
-                    <label class="form-check-label" for="peterselie"> Peterselie</label>
-                </div>
+            <div class="mb-3">
+                <label for="hoogte" class="form-label">Hoogte</label>
+                <input type="number" min="1" max="200" name="hoogte" id="hoogte" class="form-control">
+            </div>
 
-                <div class="form-check">
-                    <input class="form-check-input" type="checkbox" name="kruiden[]" value="Oregano" id="oregano">
-                    <label class="form-check-label" for="oregano"> Oregano</label>
-                </div>
+            <div class="mb-3">
+                <label for="opening" class="form-label">Datum eerste opening</label>
+                <input type="date" name="opening" id="opening" class="form-control">
+            </div>
 
-                <div class="form-check">
-                    <input class="form-check-input" type="checkbox" name="kruiden[]" value="Chili flakes" id="chili-flakes">
-                    <label class="form-check-label" for="chili-flakes"> Chili flakes</label>
-                </div>
-
-                <div class="form-check">
-                    <input class="form-check-input" type="checkbox" name="kruiden[]" value="Zwarte peper" id="zwarte-peper">
-                    <label class="form-check-label" for="zwarte-peper"> Zwarte peper</label>
-                </div>
+            <div class="mb-3">
+                <label for="cijfer" class="form-label">Cijfer voor achtbaan</label>
+                <input type="range" min="1" max="10" step="0.1" name="cijfer" id="cijfer" class="form-range">
+                <p id="cijfer-value"></p>
             </div>
 
             <div class="d-grid">
-                <button class="btn btn-primary">Bestel</button>
+                <button class="btn btn-primary">Sla op</button>
             </div>
         </form>
     </div>
