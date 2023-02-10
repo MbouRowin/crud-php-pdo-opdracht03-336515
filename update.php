@@ -18,7 +18,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
     $opening = $_POST["opening"] ?? "";
     $cijfer = $_POST["cijfer"] ?? "";
 
-    $stmt = $pdo->prepare("UPDATE achtbaan SET NaamAchtbaan = ?, NaamPretpark = ?, Land = ?, Topsnelheid = ?, Hoogte = ?, Datum = ?, Cijfer = ?");
+    $stmt = $pdo->prepare("UPDATE achtbaan SET NaamAchtbaan = ?, NaamPretpark = ?, Land = ?, Topsnelheid = ?, Hoogte = ?, Datum = ?, Cijfer = ? WHERE Id = ?");
     $stmt->bindValue(1, $achtbaan);
     $stmt->bindValue(2, $pretpark);
     $stmt->bindValue(3, $land);
@@ -26,6 +26,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
     $stmt->bindValue(5, $hoogte);
     $stmt->bindValue(6, $opening);
     $stmt->bindValue(7, $cijfer);
+    $stmt->bindValue(8, $id);
 
     $stmt->execute();
 
