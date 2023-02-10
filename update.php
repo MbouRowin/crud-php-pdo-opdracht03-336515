@@ -31,7 +31,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
     $stmt->execute();
 
     header("Refresh: 2; url=/read.php");
-    die("De achtbaan is aangepast.");
+    die("De achtbaan is aangepast!");
 }
 
 ?>
