@@ -5,7 +5,7 @@ require_once "database.php";
 $id = $_GET["id"] ?? "";
 
 if (!$id) {
-    header("Location: /");
+    header("Location: /read.php");
     die();
 }
 
@@ -30,7 +30,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
 
     $stmt->execute();
 
-    header("Refresh: 2; url=/");
+    header("Refresh: 2; url=/read.php");
     die("De achtbaan is aangepast.");
 }
 

@@ -5,14 +5,14 @@ require_once "database.php";
 $id = $_GET["id"] ?? "";
 
 if (!$id) {
-    header("Location: /");
+    header("Location: /read.php");
     die();
 }
 
-$stmt = $pdo->prepare("DELETE FROM pizza WHERE id = ?");
+$stmt = $pdo->prepare("DELETE FROM achtbaan WHERE id = ?");
 $stmt->bindValue(1, $id);
 
 $stmt->execute();
 
-header("Refresh: 2; url=/");
-die("De pizza is verwijderd.");
+header("Refresh: 2; url=/read.php");
+die("De achtbaan is verwijderd.");
