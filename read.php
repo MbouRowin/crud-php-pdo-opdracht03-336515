@@ -2,7 +2,7 @@
 
 require_once "database.php";
 
-$stmt = $pdo->query("SELECT * from achtbaan");
+$stmt = $pdo->query("SELECT * from achtbaan ORDER BY Topsnelheid DESC");
 
 ?>
 <!doctype html>
